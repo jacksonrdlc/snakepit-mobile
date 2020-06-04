@@ -21,7 +21,7 @@ interface Props {
   navigation: NavigationParams;
 }
 
-function Profile({theme, navigation}: Props) {
+function List({theme, navigation}: Props) {
   const user = useContext(UserContext);
 
   if (!user) {
@@ -107,4 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withTheme(Profile);
+export default withTheme(List);

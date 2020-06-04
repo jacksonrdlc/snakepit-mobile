@@ -4,9 +4,8 @@ import {Button, Theme, withTheme} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {NavigationParams} from 'react-navigation';
 import Hero from '../components/Hero';
-import ProviderButton from '../components/ProviderButton';
+// import ProviderButton from '../components/ProviderButton';
 import EmailPassword from '../providers/EmailPassword';
-import Google from '../providers/Google';
 
 interface Props {
   navigation: NavigationParams;
@@ -47,13 +46,6 @@ function SignIn({navigation, theme}: Props) {
         <View
           style={[styles.divider, {backgroundColor: theme.colors.primary}]}
         />
-
-        <Google />
-        <ProviderButton
-          type="phone"
-          onPress={() => navigation.navigate('PhoneSignIn')}>
-          Sign in with phone number
-        </ProviderButton>
       </View>
     </Fragment>
   );

@@ -1,27 +1,17 @@
 import dayjs from 'dayjs';
 import React, {useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {
-  Avatar,
-  Caption,
-  FAB,
-  Headline,
-  Subheading,
-  Theme,
-  Title,
-  withTheme,
-} from 'react-native-paper';
+import {Caption, Headline, Subheading, Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {NavigationParams} from 'react-navigation';
 import {UserContext} from '../App';
 import Hero from '../components/Hero';
 
 interface Props {
-  theme: Theme;
   navigation: NavigationParams;
 }
 
-function Profile({theme, navigation}: Props) {
+function Snake() {
   const user = useContext(UserContext);
 
   if (!user) {
@@ -31,17 +21,6 @@ function Profile({theme, navigation}: Props) {
   return (
     <View style={styles.container}>
       <Hero height={120} colors={['#15212B', '#15212B']} />
-      <View style={[styles.content, styles.profile]}>
-        {user.photoURL ? (
-          <Avatar.Image size={80} source={{uri: user.photoURL}} />
-        ) : (
-          <Avatar.Text
-            size={80}
-            label={user.email ? user.email.substring(0, 2).toUpperCase() : 'A'}
-            style={styles.avatar}
-          />
-        )}
-      </View>
       <View style={styles.content}>
         <Headline>
           {user.displayName ? user.displayName : user.email}{' '}
@@ -59,12 +38,6 @@ function Profile({theme, navigation}: Props) {
           </Caption>
         )}
       </View>
-      <FAB
-        color="#fff"
-        style={[styles.fab, {backgroundColor: theme.colors.primary}]}
-        icon="settings"
-        onPress={() => navigation.navigate('Settings')}
-      />
     </View>
   );
 }
@@ -107,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withTheme(Profile);
+export default Snake;

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-native start",
     "run-android": "react-native run-android",
-    "run-ios": "react-native run-ios --simulator 'iPhone 11 Pro'",
+    "run-ios": "react-native run-ios --destination 'platform=iOS,name=Jack's iPhone'",
     "rename-project": "node scripts/rename.js",
     "test": "jest",
     "lint": "eslint .",

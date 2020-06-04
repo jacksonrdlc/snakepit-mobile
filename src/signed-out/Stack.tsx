@@ -4,7 +4,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Theme, withTheme} from 'react-native-paper';
 import CreateAccount from './CreateAccount';
 import ForgotPassword from './ForgotPassword';
-import PhoneSignIn from './PhoneSignIn';
 import SignIn from './SignIn';
 
 interface Props {
@@ -34,7 +33,6 @@ function SignedOutStack({theme}: Props) {
           component={ForgotPassword}
           options={{title: 'Forgot Password'}}
         />
-        <Stack.Screen name="PhoneSignIn" component={PhoneSignIn} />
       </Stack.Navigator>
     </NavigationContainer>
   );
