@@ -3,7 +3,7 @@ import {StyleSheet, ViewStyle} from 'react-native';
 import {Button} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-type SocialType = 'facebook' | 'google' | 'phone';
+type SocialType = 'google' | 'phone';
 
 interface Props {
   style?: ViewStyle;
@@ -15,8 +15,6 @@ interface Props {
 
 function getSocialColor(type: SocialType): string {
   switch (type) {
-    case 'facebook':
-      return '#4267B2';
     case 'google':
       return '#F96458';
     case 'phone':

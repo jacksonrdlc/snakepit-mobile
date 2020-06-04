@@ -16,7 +16,6 @@ import {NavigationParams} from 'react-navigation';
 import {UserContext} from '../App';
 import Hero from '../components/Hero';
 import Provider from '../components/Provider';
-import Facebook from '../providers/Facebook';
 import Google from '../providers/Google';
 import {getProviders} from '../util/helpers';
 
@@ -68,7 +67,6 @@ function Profile({theme, navigation}: Props) {
       </View>
       <View style={styles.providers}>
         <Provider type="password" active={providers.includes('password')} />
-        <Provider type="facebook" active={providers.includes('facebook.com')} />
         <Provider type="google" active={providers.includes('google.com')} />
         <Provider type="phone" active={providers.includes('phone')} />
       </View>
@@ -80,7 +78,6 @@ function Profile({theme, navigation}: Props) {
       />
 
       <View style={styles.center}>
-        <Facebook />
         <Google />
       </View>
     </View>

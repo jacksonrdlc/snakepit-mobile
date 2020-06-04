@@ -11,7 +11,6 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <RNGoogleSignin/RNGoogleSignin.h>
 
 @import Firebase;
@@ -26,15 +25,10 @@
     [FIRApp configure];
   }
 
-#pragma mark - Set up facebook SDK
-  // Set up Facebook SDK
-  [[FBSDKApplicationDelegate sharedInstance] application:application
-                           didFinishLaunchingWithOptions:launchOptions];
-
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self
                                             launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-                                                   moduleName:@"FirebaseAuthenticationKit"
+                                                   moduleName:@"SnakePitMobile"
                                             initialProperties:nil];
 
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f
@@ -67,15 +61,9 @@
             options:
                 (NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
 
-  BOOL facebook = [[FBSDKApplicationDelegate sharedInstance]
-            application:application
-                openURL:url
-      sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
-
   BOOL google = [RNGoogleSignin application:application openURL:url options:options];
 
-  return facebook || google;
+  return google;
 }
 
 @end

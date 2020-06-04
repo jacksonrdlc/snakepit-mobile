@@ -1,5 +1,6 @@
 import React from 'react';
-import {Image, SafeAreaView, StyleSheet, View, ViewStyle} from 'react-native';
+import {Image, StyleSheet, View, ViewStyle} from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
 import LinearGradient from 'react-native-linear-gradient';
 
 interface Props {

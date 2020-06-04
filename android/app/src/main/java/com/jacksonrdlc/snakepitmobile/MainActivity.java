@@ -1,4 +1,4 @@
-package market.reactnative.firebaseauthkit;
+package com.jacksonrdlc.snakepitmobile;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "FirebaseAuthenticationKit";
+        return "SnakePitMobile";
     }
 }

@@ -12,7 +12,7 @@ interface Props {
 
 const providerMap: {[key: string]: string} = {
   password: 'email-lock',
-  facebook: 'facebook',
+  // facebook: 'facebook',
   google: 'google',
   phone: 'phone',
 };

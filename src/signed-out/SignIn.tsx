@@ -6,7 +6,6 @@ import {NavigationParams} from 'react-navigation';
 import Hero from '../components/Hero';
 import ProviderButton from '../components/ProviderButton';
 import EmailPassword from '../providers/EmailPassword';
-import Facebook from '../providers/Facebook';
 import Google from '../providers/Google';
 
 interface Props {
@@ -49,7 +48,6 @@ function SignIn({navigation, theme}: Props) {
           style={[styles.divider, {backgroundColor: theme.colors.primary}]}
         />
 
-        <Facebook />
         <Google />
         <ProviderButton
           type="phone"

@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'FirebaseAuthenticationKit' do
-  # Pods for FirebaseAuthenticationKit
+target 'SnakePitMobile' do
+  # Pods for SnakePitMobile
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -33,11 +33,10 @@ target 'FirebaseAuthenticationKit' do
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-
-  pod 'FBSDKLoginKit'
+  pod 'Firebase/Analytics'
   pod 'GoogleSignIn', '~> 5.0.0'
 
-  target 'FirebaseAuthenticationKitTests' do
+  target 'SnakePitMobileTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -45,10 +44,10 @@ target 'FirebaseAuthenticationKit' do
   use_native_modules!
 end
 
-target 'FirebaseAuthenticationKit-tvOS' do
-  # Pods for FirebaseAuthenticationKit-tvOS
+target 'SnakePitMobile-tvOS' do
+  # Pods for SnakePitMobile-tvOS
 
-  target 'FirebaseAuthenticationKit-tvOSTests' do
+  target 'SnakePitMobile-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

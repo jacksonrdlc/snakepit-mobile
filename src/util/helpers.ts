@@ -1,10 +1,9 @@
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
-type ProviderID = 'google.com' | 'facebook.com';
+type ProviderID = 'google.com';
 
 const providerNames = {
   'google.com': 'Google',
-  'facebook.com': 'Facebook',
 };
 
 const providerTitles: {[key: string]: string} = {

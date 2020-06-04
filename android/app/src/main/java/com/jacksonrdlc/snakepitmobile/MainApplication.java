@@ -1,4 +1,4 @@
-package market.reactnative.firebaseauthkit;
+package com.jacksonrdlc.snakepitmobile;
 
 import android.app.Application;
 import android.content.Context;

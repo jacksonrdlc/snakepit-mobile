@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>FirebaseAuthenticationKit</string>
+	<string>SnakePitMobile</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -22,13 +22,21 @@
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array>
-		<!-- [ios] FacebookURLScheme -->
-		<!-- [ios] GoogleURLScheme -->
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string></string>
+			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1090657710802-6d7e83pvsub8c0ugrtfk4aae5adke98s</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<!-- [ios] FacebookAppID -->
-	<!-- [ios] FacebookDisplayName -->
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
