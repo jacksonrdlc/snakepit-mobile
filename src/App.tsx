@@ -19,7 +19,6 @@ type User = FirebaseAuthTypes.User | null;
 export const UserContext = createContext<User>(null);
 
 function App() {
-  console.log('jack', SignedOutStack);
   const [initializing, setInitializing] = useState(true);
   const [listenUser, setListenUser] = useState(false);
   const [user, setUser] = useState<User>(null);
