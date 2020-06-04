@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavigationNativeContainer} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Theme, withTheme} from 'react-native-paper';
 import CreateAccount from './CreateAccount';
@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 
 function SignedOutStack({theme}: Props) {
   return (
-    <NavigationNativeContainer>
+    <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
@@ -23,11 +23,7 @@ function SignedOutStack({theme}: Props) {
           },
           headerTintColor: theme.colors.accent,
         }}>
-        <Stack.Screen
-          name="SignIn"
-          component={SignIn}
-          options={{header: null}}
-        />
+        <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen
           name="CreateAccount"
           options={{title: 'Create Account'}}
@@ -40,7 +36,7 @@ function SignedOutStack({theme}: Props) {
         />
         <Stack.Screen name="PhoneSignIn" component={PhoneSignIn} />
       </Stack.Navigator>
-    </NavigationNativeContainer>
+    </NavigationContainer>
   );
 }
 

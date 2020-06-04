@@ -1,4 +1,4 @@
-import {NavigationNativeContainer} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {Theme, withTheme} from 'react-native-paper';
@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 
 function SignedInStack({theme}: Props) {
   return (
-    <NavigationNativeContainer>
+    <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
@@ -28,7 +28,7 @@ function SignedInStack({theme}: Props) {
         />
         <Stack.Screen name="Settings" component={Settings} />
       </Stack.Navigator>
-    </NavigationNativeContainer>
+    </NavigationContainer>
   );
 }
 
