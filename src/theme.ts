@@ -6,7 +6,7 @@ export default {
   roundness: 3,
   colors: {
     ...DefaultTheme.colors,
-    primary: '#009688',
+    primary: '#15212b',
     accent: '#fff',
     background: '#fff',
   },

@@ -3,7 +3,6 @@ import {Text} from 'react-native';
 import {createContext, ReactNode, useEffect, useState} from 'react';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import {Provider} from 'react-native-paper';
-
 import theme from './theme';
 import SnakesStack from './snakes/Stack';
 import SignedOutStack from './signed-out/Stack';
@@ -57,34 +56,6 @@ function App() {
     };
   }, [listenUser]);
 
-  //     async loadSnakes() {
-  //     const snakeCollection = this.$fireStore.collection('snakes');
-  //     try {
-  //       const snakeData = await snakeCollection.get();
-  //       const snakeDocs = [];
-  //       snakeData.forEach((snake) => {
-  //         snakeDocs.push(snake.data());
-  //       });
-  //       return snakeDocs;
-  //     } catch (e) {
-  //       alert(e);
-  //       return true;
-  //     }
-  //   },
-  //   async loadUsers() {
-  //     const snakeCollection = this.$fireStore.collection('users');
-  //     try {
-  //       const userData = await snakeCollection.get();
-  //       const userDocs = [];
-  //       userData.forEach((user) => {
-  //         userDocs.push(user.data());
-  //       });
-  //       return userDocs;
-  //     } catch (e) {
-  //       alert(e);
-  //       return true;
-  //     }
-  //   },
   //   filterSnakesByActive(snakes) {
   //     return snakes.filter((snake) => {
   //       return snake.isActive && snake.type !== 'future';

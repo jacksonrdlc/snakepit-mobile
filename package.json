@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-native start",
     "run-android": "react-native run-android",
-    "run-ios": "react-native run-ios --destination 'platform=iOS,name=Jack's iPhone'",
+    "run-ios": "react-native run-ios",
     "rename-project": "node scripts/rename.js",
     "test": "jest",
     "lint": "eslint .",
@@ -22,6 +22,7 @@
     "dayjs": "^1.8.16",
     "libphonenumber-js": "^1.7.25",
     "react": "16.9.0",
+    "react-firebase-hooks": "^2.2.0",
     "react-native": "0.61.2",
     "react-native-country-picker-modal": "^0.8.0",
     "react-native-gesture-handler": "^1.4.1",
