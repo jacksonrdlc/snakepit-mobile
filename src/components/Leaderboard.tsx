@@ -66,8 +66,7 @@ const styles = StyleSheet.create({
   headline: {
     color: 'white',
     marginLeft: 20,
-    marginTop: 20,
-    fontSize: 36,
+    fontSize: 30,
     fontWeight: 'bold',
   },
   listItem: {

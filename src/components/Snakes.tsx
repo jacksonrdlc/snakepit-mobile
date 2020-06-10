@@ -1,34 +1,33 @@
 import React, {useState, useEffect} from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
-import {Avatar, Headline, List, Text} from 'react-native-paper';
-// import {NavigationParams} from 'react-navigation';
+import {Headline, List, Text} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 
 function Snakes() {
+  const navigation = useNavigation();
+
   const [loading, setLoading] = useState(true);
-  const [users, setUsers] = useState([]);
+  const [snakes, setSnakes] = useState([]);
 
   useEffect(() => {
-    const getUsers = async () => {
+    const getSnakes = async () => {
       await firestore()
-        .collection('users')
+        .collection('snakes')
         .onSnapshot(querySnapshot => {
-          const users = [];
+          const snakes = [];
 
           querySnapshot.forEach(documentSnapshot => {
-            users.push({
+            snakes.push({
               ...documentSnapshot.data(),
               key: documentSnapshot.id,
             });
           });
-          users.sort((a, b) => {
-            return b.wins.length - a.wins.length;
-          });
-          setUsers(users);
+          setSnakes(snakes);
           setLoading(false);
         });
     };
-    getUsers();
+    getSnakes();
   }, []);
 
   if (loading) {
@@ -37,20 +36,16 @@ function Snakes() {
 
   return (
     <View>
-      <Headline style={styles.headline}>Leaderboard</Headline>
+      <Headline style={styles.headline}>Snakes</Headline>
       <List.Section>
-        {users.map((user, index) => (
+        {snakes.map((snake, index) => (
           <List.Item
             key={index}
-            title={user.displayName}
+            title={snake.name}
             titleStyle={styles.listText}
             style={styles.listItem}
-            right={() => (
-              <Text style={styles.winTotal}>{user.wins.length} wins</Text>
-            )}
-            left={() => (
-              <Avatar.Text style={styles.avatar} size={40} label={user.place} />
-            )}
+            right={() => <Text style={styles.winTotal}>{snake.category}</Text>}
+            onPress={() => navigation.navigate('Snake', {snake})}
           />
         ))}
       </List.Section>
@@ -66,8 +61,7 @@ const styles = StyleSheet.create({
   headline: {
     color: 'white',
     marginLeft: 20,
-    marginTop: 20,
-    fontSize: 36,
+    fontSize: 30,
     fontWeight: 'bold',
   },
   listItem: {

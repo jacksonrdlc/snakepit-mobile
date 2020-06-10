@@ -4,7 +4,6 @@ import {Button, Theme, withTheme} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {NavigationParams} from 'react-navigation';
 import Hero from '../components/Hero';
-// import ProviderButton from '../components/ProviderButton';
 import EmailPassword from '../providers/EmailPassword';
 
 interface Props {

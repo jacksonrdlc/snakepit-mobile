@@ -56,13 +56,6 @@ function App() {
     };
   }, [listenUser]);
 
-  //   filterSnakesByActive(snakes) {
-  //     return snakes.filter((snake) => {
-  //       return snake.isActive && snake.type !== 'future';
-  //     });
-  //   }
-  // }
-
   if (initializing) {
     return <Text>Loading...</Text>;
   }

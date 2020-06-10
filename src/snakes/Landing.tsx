@@ -1,13 +1,8 @@
 import React, {useContext} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {NavigationParams} from 'react-navigation';
+import {StyleSheet, ScrollView} from 'react-native';
 import {UserContext} from '../App';
 import Leaderboard from '../components/Leaderboard';
 import Snakes from '../components/Snakes';
-
-interface Props {
-  navigation: NavigationParams;
-}
 
 function Landing() {
   const user = useContext(UserContext);
@@ -17,10 +12,10 @@ function Landing() {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Leaderboard />
-      {/* <Snakes /> */}
-    </View>
+      <Snakes />
+    </ScrollView>
   );
 }
 
@@ -30,6 +25,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     backgroundColor: '#15212b',
     color: '#fff',
+    paddingTop: 20,
   },
 });
 

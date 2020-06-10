@@ -1,44 +1,58 @@
-import dayjs from 'dayjs';
-import React, {useContext} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {Caption, Headline, Subheading, Title} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {NavigationParams} from 'react-navigation';
-import {UserContext} from '../App';
-import Hero from '../components/Hero';
+import React, {useState, useEffect} from 'react';
+import {useRoute} from '@react-navigation/native';
+import {ActivityIndicator, StyleSheet, ScrollView} from 'react-native';
+import {Headline} from 'react-native-paper';
+import TeamCard from '../components/TeamCard';
+import firestore from '@react-native-firebase/firestore';
 
-interface Props {
-  navigation: NavigationParams;
-}
+function Snakes() {
+  const route = useRoute();
+  const [loading, setLoading] = useState(true);
+  const [snake, setSnake] = useState([]);
+  const [users, setUsers] = useState([]);
 
-function Snake() {
-  const user = useContext(UserContext);
+  useEffect(() => {
+    const subscriber = firestore()
+      .collection('users')
+      .onSnapshot(querySnapshot => {
+        const users = [];
+        querySnapshot.forEach(documentSnapshot => {
+          users.push({
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id,
+          });
+        });
+        setUsers(users);
+      });
+    return () => subscriber();
+  }, []);
 
-  if (!user) {
-    return null;
+  useEffect(() => {
+    const getSnakeDoc = async () => {
+      const snakeDoc = await firestore()
+        .collection('snakes')
+        .doc(route.params.snake.key)
+        .get();
+      setSnake(snakeDoc.data());
+      setLoading(false);
+    };
+    getSnakeDoc();
+  }, [route.params.snake.key]);
+
+  if (loading) {
+    return <ActivityIndicator />;
   }
 
   return (
-    <View style={styles.container}>
-      <Hero height={120} colors={['#15212B', '#15212B']} />
-      <View style={styles.content}>
-        <Headline>
-          {user.displayName ? user.displayName : user.email}{' '}
-          {user.emailVerified && (
-            <Icon name="check-decagram" color="#2196f3" size={26} />
-          )}
-        </Headline>
-        {!!user.displayName && <Title>{user.email}</Title>}
-        {!!user.phoneNumber && <Subheading>{user.phoneNumber}</Subheading>}
-        {!!user.metadata.lastSignInTime && (
-          <Caption>
-            {`Last sign-in: ${dayjs(user.metadata.lastSignInTime).format(
-              'DD/MM/YYYY HH:mm',
-            )}`}
-          </Caption>
-        )}
-      </View>
-    </View>
+    <ScrollView style={styles.container}>
+      <Headline style={styles.headline}>{snake.name}</Headline>
+      {users.map((user, index) => {
+        const userPicks = snake.selections.filter(
+          pick => pick.owner === user.id,
+        );
+        return <TeamCard user={user} picks={userPicks} key={index} />;
+      })}
+    </ScrollView>
   );
 }
 
@@ -46,38 +60,39 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: 'relative',
-    backgroundColor: '#fff',
+    backgroundColor: '#15212b',
+    color: '#fff',
+    paddingTop: 20,
   },
-  content: {
-    paddingHorizontal: 20,
+  headline: {
+    color: 'white',
+    marginLeft: 20,
+    fontSize: 30,
+    fontWeight: 'bold',
   },
-  profile: {
-    marginTop: -50,
-    paddingVertical: 10,
+  listItem: {
+    backgroundColor: '#253849',
+    color: 'white',
+    margin: 6,
+    borderRadius: 50,
+    fontWeight: 'bold',
   },
-  avatar: {
-    borderColor: '#fff',
-    borderWidth: 5,
-    elevation: 4,
+  titleText: {
+    color: 'white',
+    fontSize: 20,
+    padding: 0,
+    fontWeight: 'bold',
   },
-  providers: {
-    backgroundColor: '#F6F7F8',
-    elevation: 4,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    marginVertical: 30,
-    padding: 20,
+  descriptionText: {
+    color: 'white',
   },
-  fab: {
-    position: 'absolute',
-    margin: 16,
-    right: 0,
-    bottom: 0,
-  },
-  center: {
-    width: '100%',
-    alignItems: 'center',
+  winTotal: {
+    color: 'white',
+    fontSize: 20,
+    marginRight: 20,
+    marginTop: 10,
+    fontWeight: 'bold',
   },
 });
 
-export default Snake;
+export default Snakes;

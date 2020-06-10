@@ -1,7 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {Theme, withTheme} from 'react-native-paper';
+import {Colors, IconButton, Theme, withTheme} from 'react-native-paper';
 import Landing from './Landing';
 import List from './List';
 import Snake from './Snake';
@@ -21,6 +21,14 @@ function SnakeStack({theme}: Props) {
             backgroundColor: theme.colors.primary,
           },
           headerTintColor: theme.colors.accent,
+          headerRight: () => (
+            <IconButton
+              icon="person"
+              color={Colors.white}
+              size={20}
+              onPress={() => console.log('Pressed')}
+            />
+          ),
         }}>
         <Stack.Screen name="SnakePit" component={Landing} />
         <Stack.Screen name="List" component={List} />

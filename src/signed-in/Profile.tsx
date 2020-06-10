@@ -15,6 +15,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {NavigationParams} from 'react-navigation';
 import {UserContext} from '../App';
 import Hero from '../components/Hero';
+import Provider from '../components/Provider';
+import {getProviders} from '../util/helpers';
 
 interface Props {
   theme: Theme;
@@ -27,6 +29,9 @@ function Profile({theme, navigation}: Props) {
   if (!user) {
     return null;
   }
+
+  // Array of providers the the user is linked with
+  const providers = getProviders(user);
 
   return (
     <View style={styles.container}>
@@ -58,6 +63,11 @@ function Profile({theme, navigation}: Props) {
             )}`}
           </Caption>
         )}
+      </View>
+      <View style={styles.providers}>
+        <Provider type="password" active={providers.includes('password')} />
+        <Provider type="google" active={providers.includes('google.com')} />
+        <Provider type="phone" active={providers.includes('phone')} />
       </View>
       <FAB
         color="#fff"
