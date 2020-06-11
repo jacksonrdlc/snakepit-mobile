@@ -1,11 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {createContext, useState, useEffect} from 'react';
+import {ActivityIndicator} from 'react-native';
 import {useRoute} from '@react-navigation/native';
-import {ActivityIndicator, StyleSheet, ScrollView} from 'react-native';
-import {Headline} from 'react-native-paper';
-import TeamCard from '../components/TeamCard';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import PlayerSelections from './PlayerSelections';
+import Leaderboard from './Leaderboard';
 import firestore from '@react-native-firebase/firestore';
 
-function Snakes() {
+const Tab = createBottomTabNavigator();
+
+export const SnakeContext = createContext(null);
+
+function Snake() {
   const route = useRoute();
   const [loading, setLoading] = useState(true);
   const [snake, setSnake] = useState([]);
@@ -39,60 +45,36 @@ function Snakes() {
     getSnakeDoc();
   }, [route.params.snake.key]);
 
+  const snakeData = {snake, users};
+
   if (loading) {
     return <ActivityIndicator />;
   }
 
   return (
-    <ScrollView style={styles.container}>
-      <Headline style={styles.headline}>{snake.name}</Headline>
-      {users.map((user, index) => {
-        const userPicks = snake.selections.filter(
-          pick => pick.owner === user.id,
-        );
-        return <TeamCard user={user} picks={userPicks} key={index} />;
-      })}
-    </ScrollView>
+    <SnakeContext.Provider value={snakeData}>
+      <Tab.Navigator>
+        <Tab.Screen
+          name="Leaderboard"
+          component={Leaderboard}
+          options={{
+            tabBarLabel: 'Leaderboard',
+            tabBarIcon: () => <Icon name="trophy-outline" size={26} />,
+          }}
+        />
+        <Tab.Screen
+          name="Pick List"
+          component={PlayerSelections}
+          options={{
+            tabBarLabel: 'Player Picks',
+            tabBarIcon: ({color}) => (
+              <Icon name="format-list-bulleted" color={color} size={26} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </SnakeContext.Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: 'relative',
-    backgroundColor: '#15212b',
-    color: '#fff',
-    paddingTop: 20,
-  },
-  headline: {
-    color: 'white',
-    marginLeft: 20,
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-  listItem: {
-    backgroundColor: '#253849',
-    color: 'white',
-    margin: 6,
-    borderRadius: 50,
-    fontWeight: 'bold',
-  },
-  titleText: {
-    color: 'white',
-    fontSize: 20,
-    padding: 0,
-    fontWeight: 'bold',
-  },
-  descriptionText: {
-    color: 'white',
-  },
-  winTotal: {
-    color: 'white',
-    fontSize: 20,
-    marginRight: 20,
-    marginTop: 10,
-    fontWeight: 'bold',
-  },
-});
-
-export default Snakes;
+export default Snake;

@@ -10,12 +10,9 @@ interface Props {
   style?: ViewStyle;
 }
 
-const providercbMap: {[key: string]: string} = {
+const providerMap: {[key: string]: string} = {
   password: 'email-lock',
-  // facebook: 'facebook',
-  google: 'google',
-  phone: 'phone',nhgm  h ncøπ¬…j
-};b ,
+};
 
 function Provider({theme, type, active, style}: Props) {
   const icon = providerMap[type];

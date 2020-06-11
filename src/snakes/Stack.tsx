@@ -3,7 +3,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {Colors, IconButton, Theme, withTheme} from 'react-native-paper';
 import Landing from './Landing';
-import List from './List';
 import Snake from './Snake';
 
 interface Props {
@@ -31,7 +30,6 @@ function SnakeStack({theme}: Props) {
           ),
         }}>
         <Stack.Screen name="SnakePit" component={Landing} />
-        <Stack.Screen name="List" component={List} />
         <Stack.Screen name="Snake" component={Snake} />
       </Stack.Navigator>
     </NavigationContainer>

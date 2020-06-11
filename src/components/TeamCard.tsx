@@ -11,7 +11,11 @@ function TeamCard({user, picks}) {
       <Card.Content>
         <List.Section>
           {picks.map((pick, index) => (
-            <List.Item key={index} title={pick.city + ' ' + pick.name} />
+            <List.Item
+              key={index}
+              title={pick.city + ' ' + pick.name}
+              titleStyle={styles.listText}
+            />
           ))}
         </List.Section>
       </Card.Content>
@@ -36,9 +40,7 @@ const styles = StyleSheet.create({
   },
   listText: {
     color: 'white',
-    fontSize: 20,
-    padding: 0,
-    fontWeight: 'bold',
+    fontSize: 16,
   },
   winTotal: {
     color: 'white',

@@ -36,6 +36,8 @@ target 'SnakePitMobile' do
   pod 'Firebase/Analytics'
   pod 'GoogleSignIn', '~> 5.0.0'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'SnakePitMobileTests' do
     inherit! :search_paths
     # Pods for testing
