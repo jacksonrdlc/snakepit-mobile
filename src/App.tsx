@@ -4,8 +4,9 @@ import {createContext, ReactNode, useEffect, useState} from 'react';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import {Provider} from 'react-native-paper';
 import theme from './theme';
-import SnakesStack from './snakes/Stack';
+import SignedInStack from './signed-in/Stack';
 import SignedOutStack from './signed-out/Stack';
+import {NavigationContainer} from '@react-navigation/native';
 
 /**
  * Types
@@ -67,7 +68,9 @@ function App() {
   return container(
     user ? (
       <UserContext.Provider value={user}>
-        <SnakesStack />
+        <NavigationContainer>
+          <SignedInStack />
+        </NavigationContainer>
       </UserContext.Provider>
     ) : (
       <SignedOutStack />

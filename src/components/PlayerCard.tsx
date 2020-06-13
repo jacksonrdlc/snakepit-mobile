@@ -1,8 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Card, List} from 'react-native-paper';
-// import {useNavigation} from '@react-navigation/native';
-// import firestore from '@react-native-firebase/firestore';
 
 function PlayerCard({user, picks}) {
   return (
