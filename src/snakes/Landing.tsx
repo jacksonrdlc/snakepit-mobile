@@ -3,6 +3,7 @@ import {StyleSheet, ScrollView} from 'react-native';
 import {UserContext} from '../App';
 import Leaderboard from '../components/Leaderboard';
 import Snakes from '../components/Snakes';
+import Snakeskins from '../components/Snakeskins';
 
 function Landing() {
   const user = useContext(UserContext);
@@ -15,6 +16,7 @@ function Landing() {
     <ScrollView style={styles.container}>
       <Leaderboard />
       <Snakes />
+      <Snakeskins />
     </ScrollView>
   );
 }

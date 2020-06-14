@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {Avatar, Headline, List, Text} from 'react-native-paper';
-// import {NavigationParams} from 'react-navigation';
 import firestore from '@react-native-firebase/firestore';
 
 function Leaderboard() {

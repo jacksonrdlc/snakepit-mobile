@@ -4,7 +4,7 @@ import {Colors, Headline, List, IconButton} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 
-function Snakes() {
+function Snakeskins() {
   const navigation = useNavigation();
 
   const [loading, setLoading] = useState(true);
@@ -36,10 +36,10 @@ function Snakes() {
 
   return (
     <View>
-      <Headline style={styles.headline}>Snakes</Headline>
+      <Headline style={styles.headline}>SnakeSkins</Headline>
       <List.Section>
         {snakes.map((snake, index) => {
-          return snake.isActive ? (
+          return !snake.isActive ? (
             <List.Item
               key={index}
               title={snake.name}
@@ -90,4 +90,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Snakes;
+export default Snakeskins;

@@ -1,7 +1,8 @@
 import React, {useContext} from 'react';
 import {StyleSheet, ScrollView} from 'react-native';
+import {Headline} from 'react-native-paper';
+import TeamCard from '../components/TeamCard';
 import {SnakeContext} from './Snake';
-import {Headline, List, Text} from 'react-native-paper';
 
 function PlayerSelections() {
   const snakeData = useContext(SnakeContext);
@@ -10,27 +11,15 @@ function PlayerSelections() {
     return null;
   }
 
-  function userName(id) {
-    const u = snakeData.users.find(user => user.id === id);
-    return u.displayName;
-  }
-
   return (
     <ScrollView style={styles.container}>
       <Headline style={styles.headline}>{snakeData.snake.name}</Headline>
-      <List.Section>
-        {snakeData.snake.selections.map((pick, index) => (
-          <List.Item
-            key={index}
-            title={pick.city + ' ' + pick.name}
-            titleStyle={styles.titleText}
-            description={userName(pick.owner)}
-            descriptionStyle={styles.titleText}
-            style={styles.listItem}
-            right={() => <Text style={styles.winTotal}>{pick.category}</Text>}
-          />
-        ))}
-      </List.Section>
+      {snakeData.users.map((user, index) => {
+        const userPicks = snakeData.snake.selections.filter(
+          pick => pick.owner === user.id,
+        );
+        return <TeamCard user={user} picks={userPicks} key={index} />;
+      })}
     </ScrollView>
   );
 }
@@ -58,6 +47,9 @@ const styles = StyleSheet.create({
   },
   titleText: {
     color: 'white',
+    fontSize: 20,
+    padding: 0,
+    fontWeight: 'bold',
   },
   descriptionText: {
     color: 'white',

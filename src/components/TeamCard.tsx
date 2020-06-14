@@ -1,8 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Card, List} from 'react-native-paper';
-// import {useNavigation} from '@react-navigation/native';
-// import firestore from '@react-native-firebase/firestore';
 
 function TeamCard({user, picks}) {
   return (
@@ -13,7 +11,7 @@ function TeamCard({user, picks}) {
           {picks.map((pick, index) => (
             <List.Item
               key={index}
-              title={pick.city + ' ' + pick.name}
+              title={pick.city ? pick.city + ' ' + pick.name : pick.name}
               titleStyle={styles.listText}
             />
           ))}
@@ -34,20 +32,15 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#253849',
     color: 'white',
-    margin: 16,
+    marginTop: 16,
+    marginRight: 16,
+    marginLeft: 16,
     borderRadius: 10,
     fontWeight: 'bold',
   },
   listText: {
     color: 'white',
     fontSize: 16,
-  },
-  winTotal: {
-    color: 'white',
-    fontSize: 20,
-    marginRight: 20,
-    marginTop: 10,
-    fontWeight: 'bold',
   },
 });
 
